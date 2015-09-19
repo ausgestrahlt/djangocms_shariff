@@ -13,11 +13,12 @@ class ShariffPlugin(CMSPluginBase):
     render_template = 'djangocms_shariff/_plugin.jade'
     model = Shariff 
     fieldsets = (
+        ('general', {
+            'fields': ['use_backend',]
+            }),
         (None, {
             'fields': ['facebook','twitter']
             }),
-#    )
-#    fieldsets = (
         (None, {
             'fields': ['emailboolean','emailadress','emailsubject']
             }),
