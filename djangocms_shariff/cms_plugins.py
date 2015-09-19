@@ -10,7 +10,7 @@ from models import Shariff
 class ShariffPlugin(CMSPluginBase):
     name = 'Shariff'
     module = 'ausgestrahlt'
-    render_template = 'djangocms_shariff/_plugin.jade'
+    render_template = 'djangocms_shariff/_plugin.html'
     model = Shariff 
     fieldsets = (
         ('general', {
