@@ -1,0 +1,9 @@
+- load cms_tags sekizai_tags
+
+- addtoblock "css"
+  link(rel='stylesheet', href="{{STATIC_URL}}bower_components/shariff/build/shariff.complete.css")
+- endaddtoblock "css"
+.shariff(data-url="{{ request.build_absolute_uri }}", data-theme="grey", data-orientation="horizontal", data-services="[&quot;facebook&quot;,&quot;googleplus&quot;,&quot;mail&quot;]", data-mail-url="mailto:affe@giraffe.de")
+- addtoblock "js"
+  script(src="{{STATIC_URL}}bower_components/shariff/build/shariff.min.js")
+- endaddtoblock "js"
