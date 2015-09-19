@@ -1,7 +1,11 @@
 from django.db import models
 
-from cms.models import CMSPlugin 
+from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
+
 from django.utils.encoding import python_2_unicode_compatible
+
+from cms.models import CMSPlugin 
 
 
 @python_2_unicode_compatible
@@ -21,6 +25,16 @@ class Shariff(CMSPlugin):
     emailsubject = models.TextField()
     # TODO: erase emailaddress, include email_body
     emailadress = models.CharField(max_length=255)
+
+    def clean(self):
+        if self.use_backend:
+            backend = reverse('shariff_backend:get')
+            import ipdb; ipdb.set_trace()
+            raise ValidationError(
+                {
+                    'use_backend': 'backend not there'
+                }
+            )
 
     def __str__(self):
         return 'Shariff' 
