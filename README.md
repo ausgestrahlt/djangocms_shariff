@@ -6,6 +6,12 @@ Provides a shariff plugin for [djangoCMS](https://github.com/divio/django-cms) >
 
 This is work in progress.
 
+For now, install with pip from github:
+
+```
+pip install -e "git+https://github.com/byteyard/djangocms_shariff.git#egg=djangocms_shariff"
+```
+
 ### Configurable apphook
 
 The apphook for the shariff backend can be registered by setting ``CMS_SHARIFF_REGISTER_APPHOOK`` to ``True`` in your ``settings.py``.
