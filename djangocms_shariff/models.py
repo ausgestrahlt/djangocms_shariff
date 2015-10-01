@@ -18,18 +18,38 @@ class Shariff(CMSPlugin):
     )
     # TODO: add theme, orientation
 
-    # social media channels
-    facebook = models.BooleanField()
-    twitter = models.BooleanField()
+    ORIENTATION_CHOICES = (
+        ('vertical','vertical'),
+        ('horizontal','horizontal'),
+        )
+    orientation_choices = models.CharField(max_length=10,
+        choices=ORIENTATION_CHOICES,
+        default='horizontal')
+    
+    THEME_CHOICES = (
+        ('standard','standard'),
+        ('grey','grey'),
+        ('white','white'),
+        )
+    theme_choises = models.CharField(max_length=8,
+        choices=THEME_CHOICES,
+        default='standard')
 
+    # social media channels
+    facebook = models.BooleanField(default=False)
+    twitter = models.BooleanField(default=False)
+    googleplus = models.BooleanField(default=False)
+    linkedin = models.BooleanField(default=False)
+    pinterest = models.BooleanField(default=False)
+    xing = models.BooleanField(default=False)
+    whatsapp = models.BooleanField(default=False)
+    addthis = models.BooleanField(default=False)
+    tumblr = models.BooleanField(default=False)
+    info = models.BooleanField(default=False, help_text='Info about the Plugin')
     # email
-    # TODO: rename emailboolean to email
-    emailboolean = models.BooleanField()
-    # TODO: renmae emailsubject to email_subject
-    emailsubject = models.TextField()
-    # TODO: erase emailaddress, include email_body
-    emailadress = models.CharField(max_length=255)
-    # TODO: email_subject and email_body should be facultative
+    email = models.BooleanField()
+    email_subject = models.TextField(blank=True)
+    email_body = models.TextField(blank=True)
 
     def clean(self):
         if self.use_backend:
@@ -44,3 +64,6 @@ class Shariff(CMSPlugin):
 
     def __str__(self):
         return 'Shariff' 
+
+
+      
