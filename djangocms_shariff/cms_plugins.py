@@ -5,7 +5,7 @@ from cms.plugin_base import CMSPluginBase
 from cms.models import CMSPlugin
 from django.contrib import admin
 
-from models import Shariff
+from models import Shariff 
 
 class ShariffPlugin(CMSPluginBase):
     name = 'Shariff'
@@ -13,14 +13,20 @@ class ShariffPlugin(CMSPluginBase):
     render_template = 'djangocms_shariff/_plugin.html'
     model = Shariff 
     fieldsets = (
-        ('general', {
+        ('General', {
             'fields': ['use_backend',]
             }),
-        (None, {
-            'fields': ['facebook','twitter']
+        ('Orientation', {
+            'fields': ['orientation_choices',]
             }),
-        (None, {
-            'fields': ['emailboolean','emailadress','emailsubject']
+        ('Theme', {
+            'fields': ['theme_choises',]
+          }),
+        ('Services', {
+            'fields': ['facebook','twitter', 'googleplus', 'linkedin', 'pinterest', 'xing', 'whatsapp', 'addthis', 'tumblr', 'info']
+            }),
+        ('E-mail', {
+            'fields': ['email','email_subject','email_body']
             }),
     )
 
