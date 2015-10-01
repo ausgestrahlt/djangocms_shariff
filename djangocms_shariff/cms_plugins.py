@@ -16,7 +16,7 @@ class ShariffPlugin(CMSPluginBase):
         ('General', {
             'fields': ['use_backend','orientation_choices','theme_choices']
             }),
-        ('Services', {
+        ('Social Media', {
             'fields': ['facebook','twitter', 'googleplus', 'linkedin', 'pinterest', 'xing', 'whatsapp', 'addthis', 'tumblr', 'info']
             }),
         ('E-mail', {
