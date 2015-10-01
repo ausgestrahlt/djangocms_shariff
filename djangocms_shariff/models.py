@@ -19,19 +19,23 @@ class Shariff(CMSPlugin):
     # TODO: add theme, orientation
 
     ORIENTATION_CHOICES = (
-        ('vertical','vertical'),
-        ('horizontal','horizontal'),
+        ('vertical', _('vertical')),
+        ('horizontal',_('horizontal')),
         )
-    orientation_choices = models.CharField(max_length=10,
+    orientation_choices = models.CharField(
+        _('orientation'),
+        max_length=10,
         choices=ORIENTATION_CHOICES,
         default='horizontal')
     
     THEME_CHOICES = (
-        ('standard','standard'),
-        ('grey','grey'),
-        ('white','white'),
+        ('standard',_('standard')),
+        ('grey',_('grey')),
+        ('white',_('white')),
         )
-    theme_choices = models.CharField(max_length=8,
+    theme_choices = models.CharField(
+        _('theme'),
+        max_length=8,
         choices=THEME_CHOICES,
         default='standard')
 
@@ -45,11 +49,11 @@ class Shariff(CMSPlugin):
     whatsapp = models.BooleanField(default=False)
     addthis = models.BooleanField(default=False)
     tumblr = models.BooleanField(default=False)
-    info = models.BooleanField(default=False, help_text='Provide information about the Plugin')
+    info = models.BooleanField(default=False, help_text=_('Provide information about the Plugin'))
     # email
-    email = models.BooleanField(help_text='Enable sharing via e-mail')
-    email_subject = models.TextField(blank=True)
-    email_body = models.TextField(blank=True)
+    email = models.BooleanField(help_text=_('Enable sharing via e-mail'))
+    email_subject = models.TextField(_('subject'),blank=True)
+    email_body = models.TextField(_('content'),blank=True)
 
     def clean(self):
         if self.use_backend:

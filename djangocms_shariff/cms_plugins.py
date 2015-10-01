@@ -6,6 +6,7 @@ from cms.models import CMSPlugin
 from django.contrib import admin
 
 from models import Shariff 
+from django.utils.translation import ugettext_lazy as _
 
 class ShariffPlugin(CMSPluginBase):
     name = 'Shariff'
@@ -13,10 +14,10 @@ class ShariffPlugin(CMSPluginBase):
     render_template = 'djangocms_shariff/_plugin.html'
     model = Shariff 
     fieldsets = (
-        ('General', {
+        (_('General'), {
             'fields': ['use_backend','orientation_choices','theme_choices']
             }),
-        ('Social Media', {
+        (_('Social Media'), {
             'fields': ['facebook','twitter', 'googleplus', 'linkedin', 'pinterest', 'xing', 'whatsapp', 'addthis', 'tumblr', 'info']
             }),
         ('E-mail', {
