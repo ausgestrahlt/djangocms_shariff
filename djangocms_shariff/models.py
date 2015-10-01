@@ -31,7 +31,7 @@ class Shariff(CMSPlugin):
         ('grey','grey'),
         ('white','white'),
         )
-    theme_choises = models.CharField(max_length=8,
+    theme_choices = models.CharField(max_length=8,
         choices=THEME_CHOICES,
         default='standard')
 
@@ -45,9 +45,9 @@ class Shariff(CMSPlugin):
     whatsapp = models.BooleanField(default=False)
     addthis = models.BooleanField(default=False)
     tumblr = models.BooleanField(default=False)
-    info = models.BooleanField(default=False, help_text='Info about the Plugin')
+    info = models.BooleanField(default=False, help_text='Provide information about the Plugin')
     # email
-    email = models.BooleanField()
+    email = models.BooleanField(help_text='Enable sharing via e-mail')
     email_subject = models.TextField(blank=True)
     email_body = models.TextField(blank=True)
 
@@ -64,6 +64,3 @@ class Shariff(CMSPlugin):
 
     def __str__(self):
         return 'Shariff' 
-
-
-      

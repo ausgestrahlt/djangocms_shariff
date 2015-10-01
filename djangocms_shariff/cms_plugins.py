@@ -14,14 +14,8 @@ class ShariffPlugin(CMSPluginBase):
     model = Shariff 
     fieldsets = (
         ('General', {
-            'fields': ['use_backend',]
+            'fields': ['use_backend','orientation_choices','theme_choices']
             }),
-        ('Orientation', {
-            'fields': ['orientation_choices',]
-            }),
-        ('Theme', {
-            'fields': ['theme_choises',]
-          }),
         ('Services', {
             'fields': ['facebook','twitter', 'googleplus', 'linkedin', 'pinterest', 'xing', 'whatsapp', 'addthis', 'tumblr', 'info']
             }),
