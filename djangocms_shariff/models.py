@@ -17,7 +17,6 @@ class Shariff(CMSPlugin):
         _('Use the shariff backend'),
         default=False
     )
-    # TODO: add theme, orientation
 
     ORIENTATION_CHOICES = (
         ('vertical', _('vertical')),
@@ -51,12 +50,12 @@ class Shariff(CMSPlugin):
     addthis = models.BooleanField(default=False)
     tumblr = models.BooleanField(default=False)
     info = models.BooleanField(default=False, help_text=_('Provide information about the Plugin'))
+
     # email
     mail = models.BooleanField(help_text=_('Enable sharing via e-mail'))
     mail_subject = models.TextField(_('subject'),blank=True)
     mail_body = models.TextField(_('content'),blank=True)
 
-    #import ipdb; ipdb.set_trace()
     def clean(self):
         if self.use_backend:
             try:
@@ -69,7 +68,6 @@ class Shariff(CMSPlugin):
                 )
 
     def get_social_choices(self):
-      # TODO: return list of truthy channels in approriate format
       channel_dict = {}
       channel_dict['facebook'] = self.facebook
       channel_dict['twitter'] = self.twitter
@@ -90,8 +88,6 @@ class Shariff(CMSPlugin):
       channel_pseudo_list += ']'
       channel_pseudo_list=channel_pseudo_list.replace(',]',']')
       return channel_pseudo_list
- 
-
     
     def __str__(self): 
         return 'Shariff' 
