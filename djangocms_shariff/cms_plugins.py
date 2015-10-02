@@ -21,8 +21,12 @@ class ShariffPlugin(CMSPluginBase):
             'fields': ['facebook','twitter', 'googleplus', 'linkedin', 'pinterest', 'xing', 'whatsapp', 'addthis', 'tumblr', 'info']
             }),
         ('E-mail', {
-            'fields': ['email','email_subject','email_body']
+            'fields': ['mail','mail_subject','mail_body']
             }),
     )
+
+    def render(self, context, instance, placeholder):
+      context = super(ShariffPlugin, self).render(context, instance, placeholder)
+      return context
 
 plugin_pool.register_plugin(ShariffPlugin)

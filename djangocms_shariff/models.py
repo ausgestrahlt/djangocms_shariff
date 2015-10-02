@@ -7,6 +7,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models import CMSPlugin 
+import json
 
 
 @python_2_unicode_compatible
@@ -51,10 +52,11 @@ class Shariff(CMSPlugin):
     tumblr = models.BooleanField(default=False)
     info = models.BooleanField(default=False, help_text=_('Provide information about the Plugin'))
     # email
-    email = models.BooleanField(help_text=_('Enable sharing via e-mail'))
-    email_subject = models.TextField(_('subject'),blank=True)
-    email_body = models.TextField(_('content'),blank=True)
+    mail = models.BooleanField(help_text=_('Enable sharing via e-mail'))
+    mail_subject = models.TextField(_('subject'),blank=True)
+    mail_body = models.TextField(_('content'),blank=True)
 
+    #import ipdb; ipdb.set_trace()
     def clean(self):
         if self.use_backend:
             try:
@@ -66,5 +68,30 @@ class Shariff(CMSPlugin):
                     }
                 )
 
-    def __str__(self):
+    def get_social_choices(self):
+      # TODO: return list of truthy channels in approriate format
+      channel_dict = {}
+      channel_dict['facebook'] = self.facebook
+      channel_dict['twitter'] = self.twitter
+      channel_dict['xing'] = self.xing
+      channel_dict['googleplus'] = self.googleplus
+      channel_dict['linkedin'] = self.linkedin
+      channel_dict['pinterest'] = self.pinterest
+      channel_dict['whatsapp'] = self.whatsapp
+      channel_dict['addthis'] = self.addthis
+      channel_dict['tumblr'] = self.tumblr
+      channel_dict['info'] = self.info
+      channel_dict['mail'] = self.mail
+      channel_pseudo_list = '['
+      for key in channel_dict.keys():
+        if channel_dict[key]:
+          channel_pseudo_list += "&quot;%s&quot;," % key
+
+      channel_pseudo_list += ']'
+      channel_pseudo_list=channel_pseudo_list.replace(',]',']')
+      return channel_pseudo_list
+ 
+
+    
+    def __str__(self): 
         return 'Shariff' 
