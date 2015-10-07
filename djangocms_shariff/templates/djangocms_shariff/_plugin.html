@@ -4,8 +4,23 @@
   <link rel="stylesheet" href="{{STATIC_URL}}djangocms_shariff/css/shariff.min.css"/>
 {%  endaddtoblock "css" %}
 
-<div {% if instance.use_backend %} data-backend-url="{% url 'shariff_backend:get' %}" {% endif %} data-url="{{ request.build_absolute_uri }}" data-theme="grey" data-orientation="horizontal" data-services="[&quot;facebook&quot;,&quot;googleplus&quot;,&quot;twitter&quot;,&quot;mail&quot;]" data-mail-url="mailto:affe@giraffe.de" class="shariff"></div>
-
+<div 
+  {% if instance.use_backend %} 
+    data-backend-url="{% url 'shariff_backend:get' %}" 
+  {% endif %} 
+  data-url="{{ request.build_absolute_uri }}" 
+  data-theme="{{instance.theme_choices}}" 
+  data-orientation="{{instance.orientation_choices}}" 
+  data-services="{{instance.get_social_choices|safe}}" 
+  {% if instance.mail %}
+    data-mail-url="mailto:"
+    data-mail-subject="{{instance.mail_subject}}"
+    {% if instance.mail_body|length > 0 %}
+      data-mail-body="{{instance.mail_body}}"
+    {% endif %}
+  {% endif %}
+  class="shariff">
+</div>
 {%  addtoblock "js" %}
   <script src="{{STATIC_URL}}djangocms_shariff/js/shariff.min.js"></script>
 {%  endaddtoblock "js" %}

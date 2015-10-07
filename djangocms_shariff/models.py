@@ -7,6 +7,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models import CMSPlugin 
+import json
 
 
 @python_2_unicode_compatible
@@ -16,20 +17,44 @@ class Shariff(CMSPlugin):
         _('Use the shariff backend'),
         default=False
     )
-    # TODO: add theme, orientation
+
+    ORIENTATION_CHOICES = (
+        ('vertical', _('vertical')),
+        ('horizontal',_('horizontal')),
+        )
+    orientation_choices = models.CharField(
+        _('orientation'),
+        max_length=10,
+        choices=ORIENTATION_CHOICES,
+        default='horizontal')
+    
+    THEME_CHOICES = (
+        ('standard',_('standard')),
+        ('grey',_('grey')),
+        ('white',_('white')),
+        )
+    theme_choices = models.CharField(
+        _('theme'),
+        max_length=8,
+        choices=THEME_CHOICES,
+        default='standard')
 
     # social media channels
-    facebook = models.BooleanField()
-    twitter = models.BooleanField()
+    facebook = models.BooleanField(default=False)
+    twitter = models.BooleanField(default=False)
+    googleplus = models.BooleanField(default=False)
+    linkedin = models.BooleanField(default=False)
+    pinterest = models.BooleanField(default=False)
+    xing = models.BooleanField(default=False)
+    whatsapp = models.BooleanField(default=False)
+    addthis = models.BooleanField(default=False)
+    tumblr = models.BooleanField(default=False)
+    info = models.BooleanField(default=False, help_text=_('Provide information about the Plugin'))
 
     # email
-    # TODO: rename emailboolean to email
-    emailboolean = models.BooleanField()
-    # TODO: renmae emailsubject to email_subject
-    emailsubject = models.TextField()
-    # TODO: erase emailaddress, include email_body
-    emailadress = models.CharField(max_length=255)
-    # TODO: email_subject and email_body should be facultative
+    mail = models.BooleanField(help_text=_('Enable sharing via e-mail'))
+    mail_subject = models.TextField(_('subject'),blank=True)
+    mail_body = models.TextField(_('content'),blank=True)
 
     def clean(self):
         if self.use_backend:
@@ -42,5 +67,27 @@ class Shariff(CMSPlugin):
                     }
                 )
 
-    def __str__(self):
+    def get_social_choices(self):
+      channel_dict = {}
+      channel_dict['facebook'] = self.facebook
+      channel_dict['twitter'] = self.twitter
+      channel_dict['xing'] = self.xing
+      channel_dict['googleplus'] = self.googleplus
+      channel_dict['linkedin'] = self.linkedin
+      channel_dict['pinterest'] = self.pinterest
+      channel_dict['whatsapp'] = self.whatsapp
+      channel_dict['addthis'] = self.addthis
+      channel_dict['tumblr'] = self.tumblr
+      channel_dict['info'] = self.info
+      channel_dict['mail'] = self.mail
+      channel_pseudo_list = '['
+      for key in channel_dict.keys():
+        if channel_dict[key]:
+          channel_pseudo_list += "&quot;%s&quot;," % key
+
+      channel_pseudo_list += ']'
+      channel_pseudo_list=channel_pseudo_list.replace(',]',']')
+      return channel_pseudo_list
+    
+    def __str__(self): 
         return 'Shariff' 
