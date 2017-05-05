@@ -84,6 +84,7 @@ class Shariff(CMSPlugin):
         channel_dict['linkedin'] = self.linkedin
         channel_dict['pinterest'] = self.pinterest
         channel_dict['whatsapp'] = self.whatsapp
+        channel_dict['threema'] = self.threema
         channel_dict['addthis'] = self.addthis
         channel_dict['tumblr'] = self.tumblr
         channel_dict['info'] = self.info
