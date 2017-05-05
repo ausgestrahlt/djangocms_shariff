@@ -1,7 +1,8 @@
+import json
+import requests
+
 from django.http import JsonResponse
 from django.views.generic import TemplateView
-
-import requests
 
 
 class JSONResponseMixin(object):
@@ -118,7 +119,6 @@ class JSONResponseMixin(object):
         if url[:4] != 'http':
             url = 'http://' + url
         response = requests.get(pinterest_url + url)
-        import json
         json_response = json.loads(response.text[2:-1])
         if response.status_code == 200 and u'count' in json_response.keys():
             return json_response['count']
