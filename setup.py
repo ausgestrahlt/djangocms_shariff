@@ -19,7 +19,7 @@ setup(
     url='https://github.com/byteyard/djangocms_shariff',
     keywords=['djangocms', 'django', 'shariff', 'share', 'social'],
     install_requires=[
-        'django-cms>=3.2',
+        'django-cms>=3.4',
         'django-sekizai>=0.8',
     ],
     classifiers=[
