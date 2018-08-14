@@ -2,14 +2,14 @@
 
 ## A django and djangoCMS implementation of [shariff](https://github.com/heiseonline/shariff)
 
-Provides a shariff plugin for [djangoCMS](https://github.com/divio/django-cms) >= 3.0 and a django app (with djangoCMS app hook) for the [shariff backend](https://github.com/heiseonline/shariff#backends).
+Provides a shariff plugin for [djangoCMS](https://github.com/divio/django-cms) >= 3.4 and a django app (with djangoCMS app hook) for the [shariff backend](https://github.com/heiseonline/shariff#backends).
 
 This is work in progress.
 
 For now, install with pip from github:
 
 ```
-pip install -e "git+https://github.com/byteyard/djangocms_shariff.git#egg=djangocms_shariff"
+pip install "https://github.com/byteyard/djangocms_shariff/archive/master.zip"
 ```
 
 ### Configurable apphook
