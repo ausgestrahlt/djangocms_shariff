@@ -41,4 +41,5 @@ class ShariffPlugin(CMSPluginBase):
                 .render(context, instance, placeholder)
         return context
 
+
 plugin_pool.register_plugin(ShariffPlugin)
