@@ -67,7 +67,7 @@ class Shariff(CMSPlugin):
         if self.use_backend:
             try:
                 backend = reverse('shariff_backend:get')
-            except Exception, e:
+            except Exception:
                 msg = 'It seems the backend is not configured properly.'
                 raise ValidationError(
                     {
