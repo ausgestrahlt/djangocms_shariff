@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             model_name="shariff",
             name="cmsplugin_ptr",
             field=models.OneToOneField(
-                on_delete=django.db.models.deletion.CASCADE,
+                on_delete=models.deletion.CASCADE,
                 parent_link=True,
                 related_name="djangocms_shariff_shariff",
                 auto_created=True,
