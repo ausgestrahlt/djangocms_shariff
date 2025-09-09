@@ -1,6 +1,6 @@
-from django.conf.urls import url
+from django.urls import re_path
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.DataBackendView.as_view(), name='get'),
+    re_path(r'^$', views.DataBackendView.as_view(), name='get'),
 ]
